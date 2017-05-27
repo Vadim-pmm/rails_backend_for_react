@@ -8,6 +8,8 @@ import promise from 'redux-promise';
 import createLogger from 'redux-logger';
 import allReducers from './reducers';
 import App from './components/App';
+import {Router, browserHistory} from 'react-router'
+import routes from './routes'
 
 const logger = createLogger();
 const store = createStore(
@@ -17,7 +19,7 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Router history {browserHistory} routes {routes}/>
     </Provider>,
     document.getElementById('root')
 );
