@@ -7,16 +7,25 @@ import promise from 'redux-promise';
 import createLogger from 'redux-logger';
 import allReducers from './reducers';
 import './index.css';
-/* import App from './components/App'; */
+import About from './components/About';
+import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-import {Router} from 'react-router';
+import {Route} from 'react-router';
 import {BrowserRouter} from 'react-router-dom'
 
-import routes from './routes';
+/* import routes from './routes'; */
 
 
 const store = createStore(allReducers, applyMiddleware(thunk, promise, createLogger));
 
-ReactDOM.render(<Provider store={store}><Router history={BrowserRouter} routes={routes}/></Provider>,
- document.getElementById('root'));
+ReactDOM.render(<Provider store={store}>
+	          <BrowserRouter>
+                     <div>
+                      <Route path='/about' component={About} />
+                      <Route path='/' component={App} />
+                    </div>
+                 </BrowserRouter>
+               </Provider>,
+               document.getElementById('root'));
+
 registerServiceWorker();
